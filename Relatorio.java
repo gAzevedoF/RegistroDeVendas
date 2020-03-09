@@ -15,6 +15,7 @@ public class Relatorio implements IRelatorio {
 		this.pos = 0;
 	}
 
+	//Carrega um arquivo, instancia as vendas por estado e coloca numa lista encadeada;
 	@Override
 	public void carregar(File file) throws IOException {
 		// TODO Auto-generated method stub
@@ -22,6 +23,8 @@ public class Relatorio implements IRelatorio {
 			for (String linha = ler.readLine(); linha != null; linha = ler.readLine()) {
 				String[] dados = linha.split(";");
 				VendaEstado v = new VendaEstado(dados[1], Integer.parseInt(dados[4]), Double.parseDouble(dados[5]));
+				
+				//Metodo que ve se o estado já existe no sistema, caso exista, as quantidades de vendas são atualizadas;
 				if (isExiste(v)) {
 					venda.get(pos).setQtde(venda.get(pos).getQtde() + v.getQtde());
 					venda.get(pos).setVlrVenda(venda.get(pos).getVlrVenda() + v.getVlrVenda());
@@ -31,7 +34,9 @@ public class Relatorio implements IRelatorio {
 			}
 		}
 	}
-
+	
+	
+	//Metodo que ve se o estado já existe no sistema, retonando um boolean;
 	private boolean isExiste(VendaEstado v) {
 		for (int i = 0; i < venda.numElements(); i++) {
 			if (venda.get(i).getEstado().equalsIgnoreCase(v.getEstado())) {
@@ -42,6 +47,7 @@ public class Relatorio implements IRelatorio {
 		return false;
 	}
 
+	//Exibe o relatório de vendas por estado;
 	@Override
 	public void exibir() {
 		// TODO Auto-generated method stub
@@ -59,6 +65,7 @@ public class Relatorio implements IRelatorio {
 		System.out.println("              " + totalVendas + "           " + valorTotaldeVendas);
 	}
 
+	//Exibe o estado que teve o melhor desempenho, em caso de empate, todos os empatados são exibidos; 
 	@Override
 	public void exibirMelhorEstado() {
 		// TODO Auto-generated method stub
@@ -88,6 +95,7 @@ public class Relatorio implements IRelatorio {
 
 	}
 
+	//Salva o relatório num arquivo que está formatado para poder ser lido pelo metodo  carregar(File file);
 	@Override
 	public void salvar(File file) throws IOException {
 		// TODO Auto-generated method stub

@@ -8,7 +8,7 @@ public class RelatorioTest {
 		IRelatorio relatorio = new Relatorio();
 
 		try {
-			relatorio.carregar(new File("c://temp/Provagb.txt"));
+			relatorio.carregar(new File("c://temp/Entrada.txt"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -22,7 +22,7 @@ public class RelatorioTest {
 		relatorio.exibirMelhorEstado();
 		
 		try {
-			relatorio.salvar(new File("c://temp/SaidaProvagb.txt"));
+			relatorio.salvar(new File("c://temp/Saida.txt"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
